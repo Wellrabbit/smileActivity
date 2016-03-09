@@ -8,9 +8,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.*;
+import android.telephony.SmsManager;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class SmileActivity extends AppCompatActivity
 {
+    private TextView smileMessageTextView;
+    private Button sendTextButton;
+    private Button addNumberButton;
+    private EditText addNumbEditText;
+    private Button randomMessageButton;
+    private ArrayList<String> smileNumbers;
+    private ArrayList<String> smileMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,6 +42,17 @@ public class SmileActivity extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+
+        smileNumbers = new ArrayList<String>();
+        buildSmileNumbers();
+        smileMessage = new ArrayList<String>();
+        buildSmileMessage();
+        smileMessageTextView = (EditText) findViewById(R.id.smileMessageTextView);
+        sendTextButton = (Button) findViewById(R.id.sendTextButton);
+        addNumberButton = (Button) findViewById(R.id.addNumberButton);
+        addNumbEditText = (EditText) findViewById(R.id.addNumbEditText);
+        randomMessageButton = (Button) findViewById(R.id.randomMessageButton);
+
     }
 
     @Override
@@ -55,5 +78,20 @@ public class SmileActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void buildSmileNumbers()
+    {
+        smileNumbers.add("3852161020");
+        smileNumbers.add("8018339810");
+        smileNumbers.add("8018356366");
+        smileNumbers.add("8014555376");
+        smileNumbers.add("8012050112");
+    }
+    private void buildSmileMessage()
+    {
+        smileMessage.add("You look great today!");
+        smileMessage.add("You can do anything you set your mind too");
+        smileMessage.add("Have a great day");
     }
 }
