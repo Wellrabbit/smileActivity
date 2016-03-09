@@ -47,11 +47,13 @@ public class SmileActivity extends AppCompatActivity
         buildSmileNumbers();
         smileMessage = new ArrayList<String>();
         buildSmileMessage();
-        smileMessageTextView = (EditText) findViewById(R.id.smileMessageTextView);
+        smileMessageTextView = (TextView) findViewById(R.id.smileMessageTextView);
         sendTextButton = (Button) findViewById(R.id.sendTextButton);
         addNumberButton = (Button) findViewById(R.id.addNumberButton);
         addNumbEditText = (EditText) findViewById(R.id.addNumbEditText);
         randomMessageButton = (Button) findViewById(R.id.randomMessageButton);
+
+        setupListeners();
 
     }
 
@@ -87,11 +89,72 @@ public class SmileActivity extends AppCompatActivity
         smileNumbers.add("8018356366");
         smileNumbers.add("8014555376");
         smileNumbers.add("8012050112");
+        smileNumbers.add("8016948781");
+        smileNumbers.add("8019317120");
     }
     private void buildSmileMessage()
     {
         smileMessage.add("You look great today!");
-        smileMessage.add("You can do anything you set your mind too");
+        smileMessage.add("You can do anything you set your mind to");
         smileMessage.add("Have a great day");
+        smileMessage.add("Don't let your dreams be dreams");
+        smileMessage.add("You're worth it");
+        smileMessage.add("You're alright");
+        smileMessage.add("");
+    }
+
+    private String randomMessage()
+    {
+        String randomSmile = "";
+        int random = (int) (Math.random() * smileMessage.size());
+        randomSmile = smileMessage.get(random);
+        return randomSmile;
+    }
+
+    private void sendSMS(String messageAdress, String messageContent)
+    {
+        SmsManager mySMSManager = SmsManager.getDefault();
+        mySMSManager.sendTextMessage(messageAdress, null, messageContent, null, null);
+    }
+
+    private void setupListeners()
+    {
+        sendTextButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+        public void onClick(View currentView)
+            {
+                try
+                {
+                    for(String object : smileNumbers)
+                    {
+                        String contact = object.toString();
+                        String message = smileMessageTextView.getText().toString();
+                        sendSMS(contact, message);
+                        Toast.makeText(currentView.getContext(),"message was sent", Toast.LENGTH_SHORT).show();
+                    }
+                    Toast.makeText(currentView.getContext(), "message was sent", Toast.LENGTH_SHORT).show();
+                }
+                catch(Exception currentExeption)
+                {
+                    Toast.makeText(currentView.getContext(), "message was not sent", Toast.LENGTH_LONG).show();
+                    Toast.makeText(currentView.getContext(), currentExeption.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        randomMessageButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick (View currentView)
+            {
+                smileMessageTextView.setText(randomMessage());
+            }
+        });
+        addNumberButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick (View currentView)
+            {
+                smileNumbers.add(addNumbEditText.getText().toString());
+            }
+        });
     }
 }
