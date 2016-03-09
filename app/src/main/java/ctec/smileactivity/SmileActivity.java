@@ -23,7 +23,8 @@ public class SmileActivity extends AppCompatActivity
     private Button randomMessageButton;
     private ArrayList<String> smileNumbers;
     private ArrayList<String> smileMessage;
-
+    private EditText addMessageEditText;
+    private Button addMessageButton;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -52,6 +53,8 @@ public class SmileActivity extends AppCompatActivity
         addNumberButton = (Button) findViewById(R.id.addNumberButton);
         addNumbEditText = (EditText) findViewById(R.id.addNumbEditText);
         randomMessageButton = (Button) findViewById(R.id.randomMessageButton);
+        addMessageEditText = (EditText) findViewById(R.id.addMessageEditText);
+        addMessageButton = (Button) findViewById(R.id.addMessageButton);
 
         setupListeners();
 
@@ -100,7 +103,7 @@ public class SmileActivity extends AppCompatActivity
         smileMessage.add("Don't let your dreams be dreams");
         smileMessage.add("You're worth it");
         smileMessage.add("You're alright");
-        smileMessage.add("");
+        smileMessage.add("You are going to do well today ^>^)");
     }
 
     private String randomMessage()
@@ -154,6 +157,13 @@ public class SmileActivity extends AppCompatActivity
             public void onClick (View currentView)
             {
                 smileNumbers.add(addNumbEditText.getText().toString());
+            }
+        });
+        addMessageButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick (View currentView)
+            {
+                smileMessage.add(addMessageEditText.getText().toString());
             }
         });
     }

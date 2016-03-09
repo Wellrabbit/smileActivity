@@ -34,12 +34,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/addNumbEditText"
-        android:layout_below="@+id/sendTextButton"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="168dp"
-        android:layout_alignEnd="@+id/sendTextButton"
         android:text="Enter Number"
-        android:password="false"/>
+        android:password="false"
+        android:layout_below="@+id/randomMessageButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/sendTextButton"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -47,7 +46,7 @@
         android:text="Add Number"
         android:id="@+id/addNumberButton"
         android:layout_below="@+id/addNumbEditText"
-        android:layout_alignEnd="@+id/sendTextButton"/>
+        android:layout_alignParentEnd="true"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -56,5 +55,24 @@
         android:id="@+id/randomMessageButton"
         android:layout_below="@+id/sendTextButton"
         android:layout_alignParentStart="true"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Add Message"
+        android:ems="10"
+        android:id="@+id/addMessageEditText"
+        android:layout_below="@+id/addNumberButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/addNumberButton"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Message"
+        android:id="@+id/addMessageButton"
+        android:layout_below="@+id/addMessageEditText"
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>
