@@ -182,7 +182,7 @@ public class SmileActivity extends AppCompatActivity
             {
                 for(String object : smileMessage)
                 {
-                    allMessagesTextView.append(object);
+                    allMessagesTextView.append("\n" + object);
                 }
             }
         });
