@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.widget.*;
 import android.telephony.SmsManager;
 
+import org.w3c.dom.Text;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -25,6 +27,9 @@ public class SmileActivity extends AppCompatActivity
     private ArrayList<String> smileMessage;
     private EditText addMessageEditText;
     private Button addMessageButton;
+    private TextView allMessagesTextView;
+    private Button showAllMessagesButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -55,6 +60,8 @@ public class SmileActivity extends AppCompatActivity
         randomMessageButton = (Button) findViewById(R.id.randomMessageButton);
         addMessageEditText = (EditText) findViewById(R.id.addMessageEditText);
         addMessageButton = (Button) findViewById(R.id.addMessageButton);
+        allMessagesTextView = (TextView) findViewById(R.id.allMessageTextView);
+        showAllMessagesButton = (Button) findViewById(R.id.showAllMessagesButton);
 
         setupListeners();
 
@@ -157,6 +164,7 @@ public class SmileActivity extends AppCompatActivity
             public void onClick (View currentView)
             {
                 smileNumbers.add(addNumbEditText.getText().toString());
+                Toast.makeText(currentView.getContext(), "number was added", Toast.LENGTH_SHORT).show();
             }
         });
         addMessageButton.setOnClickListener(new View.OnClickListener()
@@ -164,6 +172,18 @@ public class SmileActivity extends AppCompatActivity
             public void onClick (View currentView)
             {
                 smileMessage.add(addMessageEditText.getText().toString());
+                Toast.makeText(currentView.getContext(), "message was added", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        showAllMessagesButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick (View currentView)
+            {
+                for(String object : smileMessage)
+                {
+                    allMessagesTextView.append(object);
+                }
             }
         });
     }
